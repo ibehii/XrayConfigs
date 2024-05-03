@@ -4,22 +4,22 @@
 #  ____________________________________________
 
 # ======== # Importing part # ======== #
-# try:
-from colorama import Fore
-from Rcolor import standard_rainbow_fg
-from pyperclip import copy
-from sys import path as sys_path
-from urllib.request import urlretrieve
-from urllib.error import URLError
-from sys import path as sys_path
-from os import name, path, system
-from shutil import move
-sys_path.append(path.join(sys_path[0], 'lib'))
-from lib import ConfCollector
-import pyfiglet
+try:
+    from colorama import Fore
+    from Rcolor import standard_rainbow_fg
+    from pyperclip import copy
+    from sys import path as sys_path
+    from urllib.request import urlretrieve
+    from urllib.error import URLError
+    from sys import path as sys_path
+    from os import name, path, system
+    from shutil import move
+    sys_path.append(path.join(sys_path[0], 'lib'))
+    from lib import ConfCollector
+    import pyfiglet
 
-# except ImportError:
-    # exit('Please install the requirement by "pip install -r requirement.txt"')
+except ImportError:
+    exit('Please install the requirement by "pip3 install -r requirement.txt"')
 
 # ======== # Download required font for figlet # ======== #
 pyfiglet_path: str = pyfiglet.__file__.replace('__init__.py', 'fonts')
@@ -75,19 +75,19 @@ elif (UserChoice == 2):
     if (AmountConfig > 40):
         exit(Fore.RED + "The maximum capability is 40 config per requests" + Fore.RESET)
     
-    VmessConfig: str = '\n'.join(ConfCollector.VlessCollector(AmountConfig))
-    copy(VmessConfig)
+    VlessConfig: str = '\n'.join(ConfCollector.VlessCollector(AmountConfig))
+    copy(VlessConfig)
     print('The configs were copied to your clipboard.')
 
 # ======== # trojan # ======== #
 elif (UserChoice == 3): 
     _clear_screen()
     print(standard_rainbow_fg(pyfiglet.figlet_format('Trojan', font='ANSI Shadow')), end='\n\n')
-    AmountConfig: int = int(input(Fore.YELLOW + 'How many config do you need? max(40) -> ' + Fore.RESET))
+    AmountConfig: int = int(input(Fore.YELLOW + 'How many config do you need? max(15) -> ' + Fore.RESET))
     
-    if (AmountConfig > 40):
-        exit(Fore.RED + "The maximum capability is 40 config per requests" + Fore.RESET)
+    if (AmountConfig > 15):
+        exit(Fore.RED + "The maximum capability is 15 config per requests" + Fore.RESET)
     
-    VmessConfig: str = '\n'.join(ConfCollector.TrojanCollector(AmountConfig))
-    copy(VmessConfig)
+    TrojanConfig: str = '\n'.join(ConfCollector.TrojanCollector(AmountConfig))
+    copy(TrojanConfig)
     print('The configs were copied to your clipboard.')
