@@ -49,45 +49,55 @@ def _clear_screen() -> None:
 print(standard_rainbow_fg(pyfiglet.figlet_format('Config', font='ANSI Shadow')))
 print(Fore.YELLOW +  '''[1] - Get Vmess configs
 [2] - Get Vless configs
-[3] - Get Trojan configs\n''' + Fore.RESET)
+[3] - Get Trojan configs
+[4] - Get some random configs\n''' + Fore.RESET)
 
 UserChoice: int = int(input(Fore.GREEN + 'Pick a number -> ' + Fore.RESET))
 
-# ======== # Vmess # ======== #
-if (UserChoice == 1): 
-    _clear_screen()
-    print(standard_rainbow_fg(pyfiglet.figlet_format('Vmess', font='ANSI Shadow')), end='\n\n')
-    AmountConfig: int = int(input(Fore.YELLOW + 'How many config do you need? max(40) -> ' + Fore.RESET))
-    
-    if (AmountConfig > 40):
-        exit(Fore.RED + "The maximum capability is 40 config per requests" + Fore.RESET)
-    
-    VmessConfig: str = '\n'.join(ConfCollector.VmessCollector(AmountConfig))
-    copy(VmessConfig)
-    print('The configs were copied to your clipboard.')
+match UserChoice:
 
-# ======== # vless # ======== #
-elif (UserChoice == 2): 
-    _clear_screen()
-    print(standard_rainbow_fg(pyfiglet.figlet_format('Vless', font='ANSI Shadow')), end='\n\n')
-    AmountConfig: int = int(input(Fore.YELLOW + 'How many config do you need? max(40) -> ' + Fore.RESET))
-    
-    if (AmountConfig > 40):
-        exit(Fore.RED + "The maximum capability is 40 config per requests" + Fore.RESET)
-    
-    VlessConfig: str = '\n'.join(ConfCollector.VlessCollector(AmountConfig))
-    copy(VlessConfig)
-    print('The configs were copied to your clipboard.')
+    # ======== # Vmess # ======== #
+    case 1: 
+        _clear_screen()
+        print(standard_rainbow_fg(pyfiglet.figlet_format('Vmess', font='ANSI Shadow')), end='\n\n')
+        AmountConfig: int = int(input(Fore.YELLOW + 'How many config do you need? max(40) -> ' + Fore.RESET))
+        
+        if (AmountConfig > 40):
+            exit(Fore.RED + "The maximum capability is 40 config per requests" + Fore.RESET)
+        
+        VmessConfig: str = '\n'.join(ConfCollector.VmessCollector(AmountConfig))
+        copy(VmessConfig)
+        print('The configs were copied to your clipboard.')
 
-# ======== # trojan # ======== #
-elif (UserChoice == 3): 
-    _clear_screen()
-    print(standard_rainbow_fg(pyfiglet.figlet_format('Trojan', font='ANSI Shadow')), end='\n\n')
-    AmountConfig: int = int(input(Fore.YELLOW + 'How many config do you need? max(15) -> ' + Fore.RESET))
-    
-    if (AmountConfig > 15):
-        exit(Fore.RED + "The maximum capability is 15 config per requests" + Fore.RESET)
-    
-    TrojanConfig: str = '\n'.join(ConfCollector.TrojanCollector(AmountConfig))
-    copy(TrojanConfig)
-    print('The configs were copied to your clipboard.')
+    # ======== # vless # ======== #
+    case 2: 
+        _clear_screen()
+        print(standard_rainbow_fg(pyfiglet.figlet_format('Vless', font='ANSI Shadow')), end='\n\n')
+        AmountConfig: int = int(input(Fore.YELLOW + 'How many config do you need? max(40) -> ' + Fore.RESET))
+        
+        if (AmountConfig > 40):
+            exit(Fore.RED + "The maximum capability is 40 config per requests" + Fore.RESET)
+        
+        VlessConfig: str = '\n'.join(ConfCollector.VlessCollector(AmountConfig))
+        copy(VlessConfig)
+        print('The configs were copied to your clipboard.')
+
+    # ======== # trojan # ======== #
+    case 3: 
+        _clear_screen()
+        print(standard_rainbow_fg(pyfiglet.figlet_format('Trojan', font='ANSI Shadow')), end='\n\n')
+        AmountConfig: int = int(input(Fore.YELLOW + 'How many config do you need? max(15) -> ' + Fore.RESET))
+        
+        if (AmountConfig > 15):
+            exit(Fore.RED + "The maximum capability is 15 config per requests" + Fore.RESET)
+        
+        TrojanConfig: str = '\n'.join(ConfCollector.TrojanCollector(AmountConfig))
+        copy(TrojanConfig)
+        print('The configs were copied to your clipboard.')
+        
+    case 4:
+        _clear_screen()
+        print(standard_rainbow_fg(pyfiglet.figlet_format('Mixed', font='ANSI Shadow')), end='\n\n')
+
+        if ConfCollector.MixedConfig():
+            print(f'Links saved on {sys_path[0] + 'XrayMixedConfigs.txt'} file')

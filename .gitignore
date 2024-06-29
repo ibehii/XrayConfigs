@@ -1,2 +1,2 @@
 .Xray
-lib/__pycache__
+*.pyc
