@@ -7,6 +7,7 @@
 from sys import path as sys_path
 import base64
 import json
+import os
 try:
     from requests import get, exceptions
 except ImportError:
@@ -135,7 +136,7 @@ def MixedConfig() -> bool:
     for _ in range(6):
         ConfigUrlData.pop(0)
 
-    filePath: str = sys_path[0] + 'XrayMixedConfigs.txt'
+    filePath: str = os.path.join(sys_path[0], 'XrayMixedConfigs.txt')
     try:
         with open(filePath, 'w', encoding='utf-8') as confFile:
             confFile.write('\n'.join(ConfigUrlData))

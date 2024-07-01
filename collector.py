@@ -100,4 +100,4 @@ match UserChoice:
         print(standard_rainbow_fg(pyfiglet.figlet_format('Mixed', font='ANSI Shadow')), end='\n\n')
 
         if ConfCollector.MixedConfig():
-            print(f'Links saved on {sys_path[0] + 'XrayMixedConfigs.txt'} file')
+            print(f'Links saved on {path.join(sys_path[0], 'XrayMixedConfigs.txt')} file')
